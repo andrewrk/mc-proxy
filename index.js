@@ -10,11 +10,8 @@ myServer.on("login", function(realClient) {
     keepAlive: false,
   });
   myClient.once(0x01, function(packet) {
-    console.log("initiating proxy");
     realClient.on('packet', fromRealClient);
     myClient.on('packet', fromMyClient);
-    console.log("my->real", packet.id, packet);
-    realClient.write(packet.id, packet);
   });
 
   myClient.on('error', function(err) {
@@ -29,18 +26,15 @@ myServer.on("login", function(realClient) {
   realClient.on('end', removeListeners);
 
   function removeListeners() {
-    console.log("remove listeners");
     realClient.removeListener('packet', fromRealClient);
     myClient.removeListener('packet', fromMyClient);
   }
 
   function fromRealClient(packet) {
-    console.log("real->my", packet.id, packet);
     myClient.write(packet.id, packet);
   }
 
   function fromMyClient(packet) {
-    console.log("my->real", packet.id, packet);
     realClient.write(packet.id, packet);
   }
 });

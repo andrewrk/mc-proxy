@@ -18,11 +18,21 @@ myServer.on("login", function(realClient) {
   });
 
   myClient.on('error', function(err) {
+    removeListeners();
     console.error(err.stack);
   });
   realClient.on('error', function(err) {
+    removeListeners();
     console.error(err.stack);
   });
+  myClient.on('end', removeListeners);
+  realClient.on('end', removeListeners);
+
+  function removeListeners() {
+    console.log("remove listeners");
+    realClient.removeListener('packet', fromRealClient);
+    myClient.removeListener('packet', fromMyClient);
+  }
 
   function fromRealClient(packet) {
     console.log("real->my", packet.id, packet);

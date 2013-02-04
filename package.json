@@ -10,6 +10,6 @@
   "author": "Andrew Kelley <superjoe30@gmail.com>",
   "license": "BSD",
   "dependencies": {
-    "minecraft-protocol": "~0.7.6"
+    "minecraft-protocol": "~0.7.7"
   }
 }

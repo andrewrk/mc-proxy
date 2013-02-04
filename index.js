@@ -1,11 +1,20 @@
 var mc = require('minecraft-protocol');
+var settings = require('./settings');
 
 var myServer = mc.createServer({
-  port: 25566,
-  'online-mode': false,
+  port: settings.proxyPort,
+  host: settings.proxyHost,
+  'online-mode': settings['online-mode'],
+  encryption: settings.encryption,
+  kickTimeout: settings.kickTimeout,
+  motd: settings.motd,
+  'max-players': settings['max-players'],
 });
+myServer.onlineModeExceptions = settings.onlineModeExceptions;
 myServer.on("login", function(realClient) {
   var myClient = mc.createClient({
+    host: settings.minecraftHost,
+    port: settings.minecraftPort,
     username: realClient.username,
     keepAlive: false,
   });

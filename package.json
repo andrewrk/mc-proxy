@@ -1,15 +1,15 @@
 {
   "name": "mc-proxy",
   "version": "0.0.0",
-  "description": "ERROR: No README.md file found!",
+  "description": "minecraft proxy server",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:superjoe30/mc-proxy.git"
   },
-  "repository": "",
-  "author": "",
+  "author": "Andrew Kelley <superjoe30@gmail.com>",
   "license": "BSD",
   "dependencies": {
-    "minecraft-protocol": "~0.7.3"
+    "minecraft-protocol": "~0.7.5"
   }
 }

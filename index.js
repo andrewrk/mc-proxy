@@ -11,6 +11,9 @@ var myServer = mc.createServer({
   'max-players': settings['max-players'],
 });
 myServer.onlineModeExceptions = settings.onlineModeExceptions;
+myServer.on('error', function(err) {
+  console.error(err.stack);
+});
 myServer.on("login", function(realClient) {
   var myClient = mc.createClient({
     host: settings.minecraftHost,
